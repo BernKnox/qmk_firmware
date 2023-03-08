@@ -24,8 +24,9 @@ enum custom_keycodes {
 };
 
 #define FN1_SPC     LT(_NAVIGATION, KC_SPACE)
-#define FN2_ENT     LT(_SYMBOLS, KC_ENT)
+#define FN2_ENT     MO(_SYMBOLS)
 #define FN4_ADJ     MO(_ADJUST)
+#define SFT_ENT     RSFT_T(KC_ENT)
 #define CTL_ESC     LCTL_T(KC_ESC)
 #define FN_GAME     TG(_GAMES)
 #define FN_WIN      TG(_WIN)
@@ -34,14 +35,14 @@ enum custom_keycodes {
 
 #if defined(ENCODER_MAP_ENABLE)
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
-    [_BASE]       = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD),           ENCODER_CCW_CW(KC_MS_WH_DOWN, KC_MS_WH_UP)  },
-    [_WIN]        = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD),           ENCODER_CCW_CW(KC_MS_WH_DOWN, KC_MS_WH_UP)  },
-    [_GAMES]      = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD),           ENCODER_CCW_CW(KC_MS_WH_DOWN, KC_MS_WH_UP)  },
-    [_NAVIGATION] = { ENCODER_CCW_CW(RGB_HUD, RGB_HUI),           ENCODER_CCW_CW(RGB_SAD, RGB_SAI)  },
-    [_WIN_NAV]    = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD),           ENCODER_CCW_CW(KC_MS_WH_DOWN, KC_MS_WH_UP)  },
-    [_NAV_ALT]    = { ENCODER_CCW_CW(KC_VOLU, KC_VOLD),           ENCODER_CCW_CW(KC_MS_WH_DOWN, KC_MS_WH_UP)  },
-    [_SYMBOLS]    = { ENCODER_CCW_CW(RGB_VAD, RGB_VAI),           ENCODER_CCW_CW(RGB_SPD, RGB_SPI)  },
-    [_ADJUST]     = { ENCODER_CCW_CW(RGB_RMOD, RGB_MOD),          ENCODER_CCW_CW(KC_RIGHT, KC_LEFT) },
+    [_BASE]       = { ENCODER_CCW_CW(KC_MS_WH_DOWN, KC_MS_WH_UP), ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
+    [_WIN]        = { ENCODER_CCW_CW(KC_MS_WH_DOWN, KC_MS_WH_UP), ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
+    [_GAMES]      = { ENCODER_CCW_CW(KC_MS_WH_DOWN, KC_MS_WH_UP), ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
+    [_NAVIGATION] = { ENCODER_CCW_CW(KC_MS_WH_DOWN, KC_MS_WH_UP), ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
+    [_WIN_NAV]    = { ENCODER_CCW_CW(KC_MS_WH_DOWN, KC_MS_WH_UP), ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
+    [_NAV_ALT]    = { ENCODER_CCW_CW(KC_MS_WH_DOWN, KC_MS_WH_UP), ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
+    [_SYMBOLS]    = { ENCODER_CCW_CW(KC_MS_WH_DOWN, KC_MS_WH_UP), ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
+    [_ADJUST]     = { ENCODER_CCW_CW(KC_MS_WH_DOWN, KC_MS_WH_UP), ENCODER_CCW_CW(KC_VOLU, KC_VOLD) },
 };
 #endif
 
@@ -62,21 +63,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,                                     KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL  , \
     KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , FN1_SPC,                   FN2_ENT, KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_BSPC , \
     CTL_ESC, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , KC_LGUI, FN4_ADJ, FN4_ADJ, KC_RALT, KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_QUOTE, \
-    KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , FN_GAME, KC_MUTE, KC_HOME, FN_WIN , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT   \
+    KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , FN_GAME, KC_PSCR, KC_MUTE, FN_WIN , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, SFT_ENT   \
 ),
 
 [_WIN] = LAYOUT_pair(
     KC_ESC , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,                                     KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL  , \
     KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , WIN_NAV,                   FN2_ENT, KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_BSPC , \
     KC_LGUI, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , KC_LCTL, FN4_ADJ, FN4_ADJ, KC_RALT, KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_QUOTE, \
-    KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , FN_GAME, KC_MUTE, KC_HOME, FN_WIN , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT   \
+    KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , FN_GAME, KC_PSCR, KC_MUTE, FN_WIN , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, SFT_ENT   \
 ),
 
 [_GAMES] = LAYOUT_pair(
     KC_LCTL, KC_1   , KC_2   , KC_3   , KC_4   , KC_5   ,                                     KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_DEL  , \
     KC_ESC , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_SPC,                    FN2_ENT, KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_BSPC , \
     KC_LALT, KC_A   , KC_S   , KC_D   , KC_F   , KC_G   , KC_LGUI, FN4_ADJ, FN4_ADJ, KC_RALT, KC_H   , KC_J   , KC_K   , KC_L   , KC_SCLN, KC_QUOTE, \
-    KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , FN_GAME, KC_MUTE, KC_HOME, FN_WIN , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT   \
+    KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , FN_GAME, KC_PSCR, KC_MUTE, FN_WIN , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, SFT_ENT   \
 ),
 
 [_NAVIGATION] = LAYOUT_pair(
@@ -103,8 +104,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_SYMBOLS] = LAYOUT_pair(
     _______, _______, _______, _______, _______, _______,                                     _______, _______, _______, _______, _______, _______, \
     _______, KC_EXLM, KC_AT  , KC_HASH, KC_DLR , KC_PERC, _______,                   _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, _______, \
-    _______, KC_SLSH, KC_GRV , KC_BSLS, KC_MINS, _______, _______, _______, _______, _______, _______, KC_EQL , KC_LBRC, KC_RBRC, _______, _______, \
-    _______, KC_QUES, KC_TILD, KC_PIPE, KC_UNDS, _______, _______, _______, _______, _______, _______, KC_PPLS, KC_LCBR, KC_RCBR, _______, _______  \
+    _______, KC_QUES, KC_TILD, KC_PIPE, KC_MINS, _______, _______, _______, _______, _______, _______, KC_EQL , KC_LBRC, KC_RBRC, _______, _______, \
+    _______, KC_SLSH, KC_GRV , KC_BSLS, KC_UNDS, _______, _______, _______, _______, _______, _______, KC_PPLS, KC_LCBR, KC_RCBR, _______, _______  \
 ),
 
 [_ADJUST] = LAYOUT_pair(
